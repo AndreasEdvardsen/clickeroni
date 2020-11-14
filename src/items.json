@@ -1,0 +1,137 @@
+{
+      "items": [
+        {
+          "label": "wood",
+          "type": "resource",
+          "value": 0,
+          "incrementAmmount": 1,
+          "multiplier": 1,
+          "color": "brown",
+          "requirement": null
+        },
+        {
+          "label": "stone",
+          "type": "resource",
+          "value": 0,
+          "incrementAmmount": 1,
+          "multiplier": 1,
+          "color": "grey",
+          "requirement": null
+        },
+        {
+          "label": "coal",
+          "type": "resource",
+          "value": 0,
+          "incrementAmmount": 1,
+          "multiplier": 1,
+          "color": "black",
+          "requirement": null
+        },
+        {
+          "label": "iron",
+          "type": "resource",
+          "value": 0,
+          "incrementAmmount": 1,
+          "multiplier": 1,
+          "color": "brown lighten-2",
+          "requirement": null
+        },
+        {
+          "label": "gold",
+          "type": "resource",
+          "value": 0,
+          "incrementAmmount": 1,
+          "multiplier": 1,
+          "color": "yellow darken-3",
+          "requirement": null
+        },
+        {
+          "label": "food",
+          "type": "resource",
+          "value": 0,
+          "incrementAmmount": 1,
+          "multiplier": 1,
+          "color": "green",
+          "requirement": null
+        },
+        {
+          "label": "steel",
+          "type": "resource",
+          "value": 0,
+          "incrementAmmount": 1,
+          "multiplier": 1,
+          "color": "grey darken-3",
+          "requirement": "Smeltery"
+        },
+        {
+          "label": "villagers",
+          "type": "village",
+          "value": 0,
+          "incrementAmmount": 1,
+          "multiplier": 1,
+          "cost": { "food": 30, "houses": 1 },
+          "color": "",
+          "requirement": null
+        },
+        {
+          "label": "houses",
+          "type": "village",
+          "value": 0,
+          "incrementAmmount": 1,
+          "multiplier": 1,
+          "cost": { "wood": 30, "stone": 10 },
+          "color": "",
+          "requirement": null
+        },
+        {
+          "label": "Farm",
+          "type": "village",
+          "value": 0,
+          "incrementAmmount": 1,
+          "multiplier": 1,
+          "cost": { "wood": 30, "stone": 10, "villagers": 1 },
+          "color": "",
+          "requirement": null
+        },
+        {
+          "label": "Sawmill",
+          "type": "village",
+          "value": 0,
+          "incrementAmmount": 1,
+          "multiplier": 1,
+          "cost": { "wood": 30, "stone": 10, "iron": 20, "villagers": 1 },
+          "color": "",
+          "requirement": null
+        },
+        {
+          "label": "Mines",
+          "type": "village",
+          "value": 0,
+          "incrementAmmount": 1,
+          "multiplier": 1,
+          "cost": { "wood": 30, "stone": 10, "iron": 20, "villagers": 3 },
+          "color": "",
+          "requirement": null
+        },
+        {
+          "label": "Smith",
+          "type": "village",
+          "value": 0,
+          "incrementAmmount": 1,
+          "multiplier": 1,
+          "cost": { "wood": 30, "stone": 20, "iron": 50, "villagers": 2 },
+          "color": "",
+          "requirement": null
+        },
+        {
+          "label": "Smeltery",
+          "type": "village",
+          "value": 0,
+          "incrementAmmount": 1,
+          "multiplier": 1,
+          "cost": { "wood": 50, "stone": 100, "iron": 200, "villagers": 4 },
+          "color": "",
+          "requirement": null
+        }
+      ]
+}
