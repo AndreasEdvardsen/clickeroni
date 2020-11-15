@@ -7,7 +7,7 @@
     <v-flex class="d-flex">
       <v-tooltip color="black" right v-for="item in ITEMS" v-bind:key="item.label">
         <template v-slot:activator="{on, attrs}">
-          <v-card height="60px" width="60px" v-bind="attrs" v-on="on" class="ma-2" style="user-select: none;" @click="itemClicked(item)">
+          <v-card v-bind="attrs" v-on="on" height="60px" width="60px" class="ma-2" style="user-select: none;" @click="itemClicked(item)">
             <v-img v-if="item.tier == 'normal'" src="../assets/backgrounds/bg_grey.png">
               <v-img v-bind:src="require('../assets/Millitary/' + item.label + '.png')">{{ item.value }}</v-img>
             </v-img>

@@ -11,7 +11,7 @@
             <v-card dark>
               <v-card-title>Stats</v-card-title>
               <v-card-subtitle>
-                <v-card height="25px" color="red" class="mb-2"><v-card :width="healthbarWidth" height="25px" color="green"> </v-card></v-card>
+                <v-card height="25px" color="red" class="mb-2"><v-card :width="healthbarWidth" height="25px" color="green"></v-card></v-card>
                 <div>Damage: {{ dps }} Defense: {{ defense }}</div>
                 <div>Lodging: {{ lodging }}</div>
               </v-card-subtitle>
@@ -253,7 +253,11 @@ export default {
         });
 
         //handle additional effects
-        if (item.label == "Smeltery") this.items.find(i => i.label == "steel").multiplier++;
+        if (item.label == "Smeltery") {
+          this.items.find(i => i.label == "steel").multiplier++;
+          this.items.find(i => i.label == "iron").multiplier++;
+          this.items.find(i => i.label == "gold").multiplier++;
+        }
         if (item.label == "Barracks") this.lodging += 10;
         if (item.label == "Fort") this.lodging += 50;
         if (item.label == "Castle") this.lodging += 100;

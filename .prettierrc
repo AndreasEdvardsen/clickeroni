@@ -3,5 +3,6 @@
   "useTabs": false,
   "printWidth": 150,
   "jsxBracketSameLine": true,
-  "bracketSpacing": false
+  "bracketSpacing": false,
+  "htmlWhitespaceSensitivity": "ignore" 
 }

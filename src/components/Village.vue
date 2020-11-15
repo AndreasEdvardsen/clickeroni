@@ -10,36 +10,40 @@
                   :style="INCREMENTABLITY(item.cost) ? 'opacity: 1;' : 'opacity: 0.5'"
                   v-bind:src="require('../assets/Village/' + item.label + '.png')"
                 >
-                  <H2 style="background: rgba(0,0,0,0.4);">{{ item.value }}</H2></v-img
-                >
+                  <H2 style="background: rgba(0,0,0,0.4);">{{ item.value }}</H2>
+                </v-img>
               </v-img>
               <v-img v-if="item.tier == 'good'" src="../assets/backgrounds/bg_green.png">
                 <v-img
                   :style="INCREMENTABLITY(item.cost) ? 'opacity: 1;' : 'opacity: 0.5'"
                   v-bind:src="require('../assets/Village/' + item.label + '.png')"
-                  ><H2 style="background: rgba(0,0,0,0.4);">{{ item.value }}</H2></v-img
                 >
+                  <H2 style="background: rgba(0,0,0,0.4);">{{ item.value }}</H2>
+                </v-img>
               </v-img>
               <v-img v-if="item.tier == 'rare'" src="../assets/backgrounds/bg_blue.png">
                 <v-img
                   :style="INCREMENTABLITY(item.cost) ? 'opacity: 1;' : 'opacity: 0.5'"
                   v-bind:src="require('../assets/Village/' + item.label + '.png')"
-                  ><H2 style="background: rgba(0,0,0,0.4);">{{ item.value }}</H2></v-img
                 >
+                  <H2 style="background: rgba(0,0,0,0.4);">{{ item.value }}</H2>
+                </v-img>
               </v-img>
               <v-img v-if="item.tier == 'epic'" src="../assets/backgrounds/bg_red.png">
                 <v-img
                   :style="INCREMENTABLITY(item.cost) ? 'opacity: 1;' : 'opacity: 0.5'"
                   v-bind:src="require('../assets/Village/' + item.label + '.png')"
-                  ><H2 style="background: rgba(0,0,0,0.4);">{{ item.value }}</H2></v-img
                 >
+                  <H2 style="background: rgba(0,0,0,0.4);">{{ item.value }}</H2>
+                </v-img>
               </v-img>
               <v-img v-if="item.tier == 'legendary'" src="../assets/backgrounds/bg_purple.png">
                 <v-img
                   :style="INCREMENTABLITY(item.cost) ? 'opacity: 1;' : 'opacity: 0.5'"
                   v-bind:src="require('../assets/Village/' + item.label + '.png')"
-                  ><H2 style="background: rgba(0,0,0,0.4);">{{ item.value }}</H2></v-img
                 >
+                  <H2 style="background: rgba(0,0,0,0.4);">{{ item.value }}</H2>
+                </v-img>
               </v-img>
             </v-card>
           </v-card>

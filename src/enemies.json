@@ -1,67 +1,96 @@
 {
-    "enemies" : [
-        {
-          "label": "Thief",
-          "tier": "normal",
-          "maxHitpoints": 100,
-          "hitpoints": 100,
-          "damage": 1,
-          "color": "grey",
-          "loot": [{"label" : "food", "value": 5}, {"label" : "wood", "value": 5}]
-        },
-        {
-          "label": "Bandit",
-          "tier": "normal",
-          "maxHitpoints": 150,
-          "hitpoints": 150,
-          "damage": 3,
-          "color": "brown",
-          "loot": [{"label" : "food", "value": 30}, {"label" : "wood", "value": 30}]
-        },
-        {
-          "label": "Bruiser",
-          "tier": "good",
-          "maxHitpoints": 300,
-          "hitpoints": 300,
-          "damage": 2,
-          "color": "blue darken-2",
-          "loot": [{"label" : "food", "value": 10}, {"label" : "wood", "value": 50}, {"label" : "stone", "value": 10}]
-        },
-        {
-          "label": "Soldier",
-          "tier": "good",
-          "maxHitpoints": 200,
-          "hitpoints": 200,
-          "damage": 5,
-          "color": "blue-grey",
-          "loot": [{"label" : "food", "value": 10}, {"label" : "wood", "value": 50}, {"label" : "iron", "value": 20}]
-        },
-        {
-          "label": "General",
-          "tier": "rare",
-          "maxHitpoints": 300,
-          "hitpoints": 300,
-          "damage": 2,
-          "color": "blue-grey",
-          "loot": [{"label" : "food", "value": 100}, {"label" : "iron", "value": 50}, {"label" : "stone", "value": 10}]
-        },
-        {
-          "label": "Prince",
-          "tier": "epic",
-          "maxHitpoints": 300,
-          "hitpoints": 300,
-          "damage": 10,
-          "color": "orange",
-          "loot": [{"label" : "Coins", "value": 5}, {"label" : "gold", "value": 10}, {"label" : "steel", "value": 10}]
-        },
-        {
-          "label": "King",
-          "tier": "legendary",
-          "maxHitpoints": 500,
-          "hitpoints": 500,
-          "damage": 8,
-          "color": "purple",
-          "loot": [{"label" : "Coins", "value": 10}, {"label" : "gold", "value": 100}, {"label" : "food", "value": 1000}]
-        } 
+  "enemies": [
+    {
+      "label": "Thief",
+      "tier": "normal",
+      "maxHitpoints": 100,
+      "hitpoints": 100,
+      "damage": 1,
+      "color": "grey",
+      "loot": [
+        {"label": "food", "value": 5, "color": "green"},
+        {"label": "wood", "value": 5, "color": "brown"}
       ]
+    },
+    {
+      "label": "Bandit",
+      "tier": "normal",
+      "maxHitpoints": 150,
+      "hitpoints": 150,
+      "damage": 3,
+      "color": "brown",
+      "loot": [
+        {"label": "food", "value": 30, "color": "green"},
+        {"label": "wood", "value": 30, "color": "brown"}
+      ]
+    },
+    {
+      "label": "Bruiser",
+      "tier": "good",
+      "maxHitpoints": 300,
+      "hitpoints": 300,
+      "damage": 2,
+      "color": "blue darken-2",
+      "loot": [
+        {"label": "food", "value": 10, "color": "green"},
+        {"label": "wood", "value": 50, "color": "brown"},
+        {"label": "stone", "value": 10, "color": "grey"}
+      ]
+    },
+    {
+      "label": "Soldier",
+      "tier": "good",
+      "maxHitpoints": 200,
+      "hitpoints": 200,
+      "damage": 5,
+      "color": "blue-grey",
+      "loot": [
+        {"label": "food", "value": 10, "color": "green"},
+        {"label": "wood", "value": 50, "color": "brown"},
+        {"label": "iron", "value": 20, "color": "grey"},
+        {"label": "steel", "value": 100, "color": "blue-grey"}
+      ]
+    },
+    {
+      "label": "General",
+      "tier": "rare",
+      "maxHitpoints": 300,
+      "hitpoints": 300,
+      "damage": 2,
+      "color": "blue-grey",
+      "loot": [
+        {"label": "food", "value": 100, "color": "green"},
+        {"label": "steel", "value": 100, "color": "blue-grey"},
+        {"label": "iron", "value": 50, "color": "grey"},
+        {"label": "stone", "value": 10, "color": "grey"}
+      ]
+    },
+    {
+      "label": "Prince",
+      "tier": "epic",
+      "maxHitpoints": 300,
+      "hitpoints": 300,
+      "damage": 10,
+      "color": "orange",
+      "loot": [
+        {"label": "Coins", "value": 5, "color": "orange"},
+        {"label": "steel", "value": 100, "color": "blue-grey"},
+        {"label": "gold", "value": 10, "color": "orange"}
+      ]
+    },
+    {
+      "label": "King",
+      "tier": "legendary",
+      "maxHitpoints": 500,
+      "hitpoints": 500,
+      "damage": 8,
+      "color": "purple",
+      "loot": [
+        {"label": "Coins", "value": 10, "color": "orange"},
+        {"label": "steel", "value": 100, "color": "blue-grey"},
+        {"label": "gold", "value": 100, "color": "orange"},
+        {"label": "food", "value": 1000, "color": "green"}
+      ]
+    }
+  ]
 }
