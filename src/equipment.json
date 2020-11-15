@@ -1,111 +1,93 @@
 {
     "equipment" : [
         {
-          "label": "Wooden Axe",
-          "upgradeEffect": "wood",
-          "ammount": 1,
-          "requirements": null,
-          "cost": { "wood": 30 },
-          "color": "brown",
-          "crafted": false
-        },
-        {
           "label": "Stone Axe",
+          "tier": "normal",
+          "icon": "StoneAxe.png",
           "upgradeEffect": "wood",
-          "ammount": 5,
           "requirements": null,
-          "cost": { "wood": 30, "stone": 50 },
-          "color": "grey",
+          "ammount": 2,
+          "cost": { "wood": 100, "stone": 100 },
+          "crafted": true
+        },
+        {
+          "label": "Pickaxe",
+          "tier": "normal",
+          "icon": "Pickaxe.png",
+          "upgradeEffect": "mineral",
+          "requirements": null,
+          "ammount": 2,
+          "cost": { "wood": 100, "iron": 100 },
           "crafted": false
         },
         {
-          "label": "Iron Axe",
+          "label": "Sicle",
+          "tier": "normal",
+          "icon": "Sicle.png",
+          "upgradeEffect": "food",
+          "requirements": null,
+          "ammount": 2,
+          "cost": { "wood": 100, "iron": 100 },
+          "crafted": false
+        },
+        {
+          "label": "Saw",
+          "tier": "good",
+          "icon": "Saw.png",
           "upgradeEffect": "wood",
-          "ammount": 10,
-          "requirements": ["smith"],
-          "cost": { "wood": 30, "iron": 100 },
-          "color": "blue-grey",
+          "requirements": null,
+          "ammount": 2,
+          "cost": { "wood": 200, "iron": 200 },
+          "crafted": false
+        },
+        {
+          "label": "Explosives",
+          "tier": "rare",
+          "icon": "Explosives.png",
+          "upgradeEffect": "mineral",
+          "requirements": null,
+          "ammount": 4,
+          "cost": { "wood": 300, "iron": 100, "coal": 200 },
+          "crafted": false
+        },
+        {
+          "label": "Food Barrels",
+          "tier": "good",
+          "icon": "FoodBarrels.png",
+          "upgradeEffect": "food",
+          "requirements": null,
+          "ammount": 2,
+          "cost": { "wood": 300, "iron": 100 },
+          "crafted": false
+        },
+        {
+          "label": "Fishing Rod",
+          "tier": "rare",
+          "icon": "FishingRod.png",
+          "upgradeEffect": "food",
+          "requirements": null,
+          "ammount": 4,
+          "cost": { "wood": 500, "iron": 200, "food": 100 },
+          "crafted": false
+        },
+        {
+          "label": "Mineral Barrels",
+          "tier": "good",
+          "icon": "MineralBarrels.png",
+          "upgradeEffect": "mineral",
+          "requirements": null,
+          "ammount": 2,
+          "cost": { "wood": 300, "iron": 100},
           "crafted": false
         },
         {
           "label": "Steel Axe",
+          "tier": "rare",
+          "icon": "SteelAxe.png",
           "upgradeEffect": "wood",
-          "ammount": 10,
-          "requirements": ["smith", "smeltery"],
-          "cost": { "wood": 30, "iron":100, "steel": 100 },
-          "color": "blue-grey",
-          "crafted": false
-        },
-        {
-          "label": "Wood Pickaxe",
-          "upgradeEffect": "mining",
-          "ammount": 1,
           "requirements": null,
-          "cost": { "wood": 30, "iron": 10 },
-          "color": "brown",
-          "crafted": false
-        },
-        {
-          "label": "Stone Pickaxe",
-          "upgradeEffect": "mining",
-          "ammount": 5,
-          "requirements": null,
-          "cost": { "wood": 30,  "stone": 50 , "iron": 10},
-          "color": "grey",
-          "crafted": false
-        },
-        {
-          "label": "Iron Pickaxe",
-          "upgradeEffect": "mining",
-          "ammount": 5,
-          "requirements": ["smith"],
-          "cost": { "wood": 30, "iron": 100 },
-          "color": "blue-grey",
-          "crafted": false
-        },
-        {
-          "label": "Steel Pickaxe",
-          "upgradeEffect": "mining",
-          "ammount": 10,
-          "requirements": ["smith", "smeltery"],
-          "cost": { "wood": 30, "iron":100, "steel": 100 },
-          "color": "blue-grey",
-          "crafted": false
-        },
-        {
-          "label": "Wood Hoe",
-          "upgradeEffect": "food",
-          "ammount": 1,
-          "requirements": null,
-          "cost": { "wood": 30},
-          "color": "brown",
-          "crafted": false
-        },
-        {
-          "label": "Stone Hoe",
-          "upgradeEffect": "food",
-          "ammount": 2,
-          "requirements": null,
-          "cost": { "wood": 30, "stone": 50, "iron": 10},
-          "color": "brown lighten-3",
-          "crafted": false
-        },
-        {
-          "label": "Iron Hoe",
-          "upgradeEffect": "food",
-          "ammount": 5,
-          "requirements": ["smith"],
-          "cost": { "wood": 30, "iron": 100},
-          "color": "brown lighten-3",
-          "crafted": false
-        },
-        {
-          "label": "Steel Hoe",
-          "upgradeEffect": "food",
-          "ammount": 5,
-          "requirements": ["smith", "smeltery"],
-          "cost": { "wood": 30, "iron":100, "steel": 100},
-          "color": "brown lighten-3",
+          "ammount": 4,
+          "cost": { "wood": 300, "steel": 100},
           "crafted": false
         }
       ]

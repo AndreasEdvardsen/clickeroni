@@ -1,72 +1,72 @@
 <template>
-  <v-container fluid class="d-flex">
-    <v-card v-if="items" class="d-flex">
-      <v-card>
-        <v-card-title>Resources</v-card-title>
-        <v-card-subtitle>Used in advanced production</v-card-subtitle>
-        <v-card class="ma-2" v-for="clickable in resourceItems" v-bind:key="clickable.label">
-          <v-card v-if="meetItemRequirements(clickable)" style="user-select: none;" dark v-bind:color="clickable.color" @click="increment(clickable)">
-            <v-card-title primary-title> {{ clickable.label }} : {{ clickable.value }} </v-card-title>
-          </v-card>
-        </v-card>
+  <v-main>
+    <v-app-bar app dark>
+      <resources :RESOURCES="resourceItems" @resource-clicked="increment"></resources>
+    </v-app-bar>
+
+    <v-navigation-drawer height="180px" dark floating permanent absolute>
+      <v-card width="300px">
+        <v-card-title>Stats</v-card-title>
+        <v-card-subtitle>
+          <div class="mt-2">Health: {{ hitpoints }}</div>
+          <v-card height="25px" color="red" class="mb-2"><v-card :width="healthbarWidth" height="25px" color="green"> </v-card></v-card>
+          <div>Damage: {{ dps }} Defense: {{ defense }}</div>
+          <div>Lodging: {{ lodging }}</div>
+        </v-card-subtitle>
       </v-card>
-      <v-card>
-        <v-card-title>Your Village</v-card-title>
-        <v-card-subtitle>Automates resource production</v-card-subtitle>
-        <v-tooltip color="black" right v-for="villageItem in villageItems" v-bind:key="villageItem.label">
-          <template v-slot:activator="{ on, attrs }">
-            <v-card v-bind="attrs" v-on="on" class="ma-2" style="user-select: none;" v-bind:color="villageItem.color" @click="increment(villageItem)">
-              <v-card-title primary-title> {{ villageItem.label }} : {{ villageItem.value }} </v-card-title>
-            </v-card>
-          </template>
-          <h3>Costs:</h3>
-          <h4 v-for="(cost, name) in villageItem.cost" v-bind:key="villageItem.label + name" v-bind:class="canAfford(cost, name) ? '' : 'red--text'">
-            <span v-if="cost > 0">{{ name }}: {{ cost }}</span>
-          </h4>
-        </v-tooltip>
+    </v-navigation-drawer>
+
+    <v-card class="d-flex">
+      <v-card v-if="items" class="d-flex">
+        <equipment :ITEMS="equipmentItems" :AFFORDANCE="canAfford" :INCREMENTABLITY="canIncrement" @item-clicked="craftEquipment"></equipment>
+        <millitary
+          :ITEMS="millitaryItems"
+          :AFFORDANCE="canAfford"
+          :INCREMENTABLITY="canIncrement"
+          @item-clicked="trainMillitary"
+          :LODGING="lodging"
+        ></millitary>
       </v-card>
     </v-card>
 
-    <v-card v-if="equipments">
-      <v-card-title>Your Equipment</v-card-title>
-      <v-card-subtitle>Improves manual gathering</v-card-subtitle>
-      <v-card class="ma-2" v-for="equipment in equipments" v-bind:key="equipment.label">
-        <v-tooltip v-if="meetEquipmentRequirements(equipment)" color="black" right>
-          <template v-slot:activator="{ on, attrs }">
-            <v-card
-              dark
-              v-bind="attrs"
-              v-on="on"
-              style="user-select: none;"
-              width="200"
-              v-bind:color="equipment.crafted == true ? 'green' : canIncrement(equipment.cost) ? equipment.color : 'grey lighten-2'"
-              v-bind:disabled="equipment.crafted"
-              @click="craftEquipment(equipment)"
-            >
-              <v-card-title primary-title> {{ equipment.label }}</v-card-title>
-            </v-card>
-          </template>
-          <h3>Costs:</h3>
-          <h4 v-for="(cost, name) in equipment.cost" v-bind:key="equipment.label + name" v-bind:class="canAfford(cost, name) ? '' : 'red--text'">
-            <span v-if="cost > 0">{{ name }}: {{ cost }}</span>
-          </h4>
-        </v-tooltip>
-      </v-card>
-    </v-card>
+    <v-navigation-drawer width="400px" dark app right>
+      <enemies :ITEMS="enemies" :HITPOINTS="hitpoints" @item-clicked="attackEnemy"></enemies>
+    </v-navigation-drawer>
 
-    <v-btn class="ml-2" @click="updateLocalStorage">Save</v-btn>
-    <v-btn class="ml-2" @click="clearLocalStorage">reset</v-btn>
-  </v-container>
+    <v-app-bar clipped-right app bottom dark>
+      <villageItems :ITEMS="villageItems" :AFFORDANCE="canAfford" @item-clicked="increment"></villageItems>
+      <v-btn color="green" class="ml-2" @click="updateLocalStorage">Save</v-btn>
+      <v-btn color="red" class="ml-2" @click="clearLocalStorage">reset</v-btn>
+    </v-app-bar>
+  </v-main>
 </template>
 
 <script>
 import itemsJson from "../items.json";
 import equipmentJson from "../equipment.json";
+import enemiesJson from "../enemies.json";
+
+import resources from "../components/Resources";
+import villageItems from "../components/Village";
+import equipment from "../components/Equipment";
+import millitary from "../components/Millitary.vue";
+import enemies from "../components/Enemies.vue";
 export default {
+  components: {
+    resources,
+    villageItems,
+    equipment,
+    millitary,
+    enemies
+  },
   data() {
     return {
       items: itemsJson.items,
-      equipments: equipmentJson.equipment
+      equipments: equipmentJson.equipment,
+      enemies: [],
+      lodging: 10,
+      hitpoints: 100,
+      maxEnemies: 5
     };
   },
   mounted() {
@@ -78,9 +78,26 @@ export default {
     setInterval(this.gameLoop, 1000);
   },
   computed: {
+    dps() {
+      var dps = 0;
+      this.millitaryItems.forEach(item => {
+        dps += item.dps * item.value;
+      });
+      return dps;
+    },
+    defense() {
+      var defense = 0;
+      this.millitaryItems.forEach(item => {
+        defense += item.defense * item.value;
+      });
+      return defense;
+    },
+    healthbarWidth() {
+      return (this.hitpoints / 100) * 100 + "%";
+    },
     resourceItems() {
       return this.items.filter(i => {
-        if (i.type == "resource") {
+        if (i.type == "resource" && this.meetItemRequirements(i)) {
           return i;
         }
       });
@@ -91,32 +108,81 @@ export default {
           return i;
         }
       });
+    },
+    millitaryItems() {
+      return this.items.filter(i => {
+        if (i.type == "millitary" && this.meetEquipmentRequirements(i)) {
+          return i;
+        }
+      });
+    },
+    equipmentItems() {
+      return this.equipments.filter(i => {
+        if (this.meetEquipmentRequirements(i)) {
+          return i;
+        }
+      });
     }
   },
   methods: {
     gameLoop() {
+      var dubloonMultiplier = 1;
+      dubloonMultiplier += Math.floor(this.items.find(i => i.label == "Royal Dubloons").value * 0.1);
       this.villageItems.forEach(item => {
         if (item.value > 0) {
           if (item.label == "Farm") {
             var food = this.items.find(i => i.label.toLowerCase() == "food");
-            food.value += 1 * item.value;
+            food.value += 1 * item.value * dubloonMultiplier;
           }
           if (item.label == "Sawmill") {
             var wood = this.items.find(i => i.label.toLowerCase() == "wood");
-            wood.value += 1 * item.value;
+            wood.value += 1 * item.value * dubloonMultiplier;
           }
           if (item.label == "Mines") {
             var stone = this.items.find(i => i.label.toLowerCase() == "stone");
             var coal = this.items.find(i => i.label.toLowerCase() == "coal");
             var iron = this.items.find(i => i.label.toLowerCase() == "iron");
             var gold = this.items.find(i => i.label.toLowerCase() == "gold");
-            stone.value += 1 * item.value;
-            if (Math.random() > 0.5) coal.value += 1 * item.value;
-            if (Math.random() > 0.7) iron.value += 1 * item.value;
-            if (Math.random() > 0.95) gold.value += 1 * item.value;
+            stone.value += 1 * item.value * dubloonMultiplier;
+            if (Math.random() > 0.5) coal.value += 1 * item.value * dubloonMultiplier;
+            if (Math.random() > 0.7) iron.value += 1 * item.value * dubloonMultiplier;
+            if (Math.random() > 0.95) gold.value += 1 * item.value * dubloonMultiplier;
           }
         }
       });
+      this.heal(1);
+      this.handleEnemyStates();
+      if (this.enemies.length < this.maxEnemies) this.spawnEnemy();
+    },
+    handleEnemyStates() {
+      this.enemies.forEach(e => {
+        if (e.hitpoints <= 0) {
+          e.loot.forEach(l => {
+            if (l.label == "Royal Dubloons") this.items.find(item => item.label == l.label).value += l.value;
+          });
+          this.enemies.splice(this.enemies.indexOf(e), 1);
+        }
+      });
+    },
+    spawnEnemy() {
+      var rand = Math.floor(Math.random() * enemiesJson.enemies.length);
+      var enemy = enemiesJson.enemies[rand];
+      this.enemies.push(JSON.parse(JSON.stringify(enemy)));
+    },
+    heal(ammount) {
+      if (this.hitpoints >= 100) this.hitpoints == 100;
+      else this.hitpoints += ammount;
+    },
+    takeDamage(ammount) {
+      if (ammount > this.defense) this.hitpoints -= ammount - this.defense;
+      else this.hitpoints -= 1;
+      if (this.hitpoints <= 0) this.hitpoints == 0;
+    },
+    attackEnemy(enemy) {
+      if (this.hitpoints >= enemy.damage) {
+        enemy.hitpoints -= this.dps;
+        this.takeDamage(enemy.damage);
+      }
     },
     updateLocalStorage() {
       localStorage.items = JSON.stringify(this.items);
@@ -132,6 +198,12 @@ export default {
       if (item.cost && this.canIncrement(item.cost)) {
         this.applyCosts(item.cost);
         item.value += item.incrementAmmount * item.multiplier;
+
+        //handle additional effects
+        if (item.label == "Smeltery") this.items.find(i => i.label == "steel").multiplier++;
+        if (item.label == "Barracks") this.lodging += 10;
+        if (item.label == "Fort") this.lodging += 50;
+        if (item.label == "Castle") this.lodging += 100;
       } else if (!item.cost) {
         item.value += item.incrementAmmount * item.multiplier;
       }
@@ -144,6 +216,11 @@ export default {
           this.$set(equipment, "crafted", true);
           this.applyCosts(equipment.cost);
         }
+        if (equipment.upgradeEffect == "food") {
+          this.items.find(i => i.label == "food").multiplier += equipment.ammount;
+          this.$set(equipment, "crafted", true);
+          this.applyCosts(equipment.cost);
+        }
         if (equipment.upgradeEffect == "mining") {
           this.items.find(i => i.label == "stone").multiplier += equipment.ammount;
           this.items.find(i => i.label == "coal").multiplier += equipment.ammount;
@@ -152,6 +229,12 @@ export default {
           this.$set(equipment, "crafted", true);
           this.applyCosts(equipment.cost);
         }
+      }
+    },
+    trainMillitary(millitary) {
+      if (millitary.cost && this.canIncrement(millitary.cost)) {
+        this.applyCosts(millitary.cost);
+        millitary.value += 1 * millitary.multiplier;
       }
     },
     meetEquipmentRequirements(equipment) {
@@ -175,13 +258,14 @@ export default {
       );
     },
     canAfford(cost, name) {
-      var affordance =
-        this.items.find(c => {
-          if (c.label.toLowerCase() == name.toLowerCase()) {
-            return c;
-          }
-        }).value >= cost;
-      return affordance;
+      var item = this.items.find(c => {
+        if (c.label.toLowerCase() == name.toLowerCase()) {
+          return c;
+        }
+      });
+      if (name == "lodging" && this.lodging >= cost) return true;
+      if (item && item.value >= cost) return true;
+      else return false;
     },
     applyCosts(costs) {
       Object.keys(costs).filter(name => {
@@ -189,11 +273,15 @@ export default {
       });
     },
     applyCost(cost, name) {
-      this.items.find(c => {
-        if (c.label.toLowerCase() == name.toLowerCase()) {
-          c.value -= cost;
-        }
-      });
+      if (name == "lodging") {
+        this.lodging -= cost;
+      } else {
+        this.items.find(c => {
+          if (c.label.toLowerCase() == name.toLowerCase()) {
+            c.value -= cost;
+          }
+        });
+      }
     }
   }
 };
