@@ -11,7 +11,6 @@
             <v-card dark>
               <v-card-title>Stats</v-card-title>
               <v-card-subtitle>
-                <div class="mt-2">Health: {{ hitpoints }}</div>
                 <v-card height="25px" color="red" class="mb-2"><v-card :width="healthbarWidth" height="25px" color="green"> </v-card></v-card>
                 <div>Damage: {{ dps }} Defense: {{ defense }}</div>
                 <div>Lodging: {{ lodging }}</div>
@@ -36,10 +35,17 @@
             </v-card>
           </v-col>
           <v-col>
-            <equipment :ITEMS="equipmentItems" :AFFORDANCE="canAfford" :INCREMENTABLITY="canIncrement" @item-clicked="craftEquipment"></equipment>
+            <equipment
+              v-if="items.find(i => i.label == 'Smith').value > 0"
+              :ITEMS="equipmentItems"
+              :AFFORDANCE="canAfford"
+              :INCREMENTABLITY="canIncrement"
+              @item-clicked="craftEquipment"
+            ></equipment>
           </v-col>
           <v-col>
             <millitary
+              v-if="items.find(i => i.label == 'Barracks').value > 0"
               :ITEMS="millitaryItems"
               :AFFORDANCE="canAfford"
               :INCREMENTABLITY="canIncrement"
@@ -56,7 +62,7 @@
     </v-navigation-drawer>
 
     <v-navigation-drawer width="100px" dark app>
-      <villageItems :ITEMS="villageItems" :AFFORDANCE="canAfford" @item-clicked="increment"></villageItems>
+      <villageItems :ITEMS="villageItems" :AFFORDANCE="canAfford" :INCREMENTABLITY="canIncrement" @item-clicked="increment"></villageItems>
     </v-navigation-drawer>
 
     <v-app-bar dense clipped-right clipped-left app bottom dark>
@@ -98,13 +104,15 @@ export default {
     //fetch local storage
     if (localStorage.items) this.items = JSON.parse(localStorage.items);
     if (localStorage.equipments) this.equipments = JSON.parse(localStorage.equipments);
+    if (localStorage.lodging) this.lodging = localStorage.lodging;
+    if (localStorage.hitpoints) this.hitpoints = localStorage.hitpoints;
 
     //Starting Gameloop
     setInterval(this.gameLoop, 1000);
   },
   computed: {
     dps() {
-      var dps = 0;
+      var dps = 1;
       this.millitaryItems.forEach(item => {
         dps += item.dps * item.value;
       });
@@ -128,9 +136,10 @@ export default {
       });
     },
     villageItems() {
-      return this.items.filter(i => {
-        if (i.type == "village") {
-          return i;
+      return this.items.filter((item, index) => {
+        if (item.type == "village" && item.unlocked) {
+          if (item.value > 0 && this.items[index + 1].unlocked !== true) this.items[index + 1].unlocked = true;
+          return item;
         }
       });
     },
@@ -195,7 +204,7 @@ export default {
       this.enemies.forEach(e => {
         if (e.hitpoints <= 0) {
           e.loot.forEach(l => {
-            if (l.label == "Royal Dubloons") this.items.find(item => item.label == l.label).value += l.value;
+            this.items.find(item => item.label == l.label).value += l.value;
           });
           this.enemies.splice(this.enemies.indexOf(e), 1);
         }
@@ -224,17 +233,24 @@ export default {
     updateLocalStorage() {
       localStorage.items = JSON.stringify(this.items);
       localStorage.equipments = JSON.stringify(this.equipments);
+      localStorage.lodging = this.lodging;
+      localStorage.hitpoints = this.hitpoints;
     },
     clearLocalStorage() {
       localStorage.removeItem("items");
       localStorage.removeItem("equipments");
-
+      localStorage.removeItem("lodging");
+      localStorage.removeItem("hitpoints");
       location.reload();
     },
     increment(item) {
       if (item.cost && this.canIncrement(item.cost)) {
         this.applyCosts(item.cost);
         item.value += item.incrementAmmount * item.multiplier;
+
+        Object.keys(item.cost).forEach(key => {
+          item.cost[key] += Math.floor((item.cost[key] / item.value) * (item.value / 2));
+        });
 
         //handle additional effects
         if (item.label == "Smeltery") this.items.find(i => i.label == "steel").multiplier++;

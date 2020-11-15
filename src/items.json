@@ -73,6 +73,18 @@
           "disabled": true
         },
         {
+          "label": "houses",
+          "tier":"normal",
+          "type": "village",
+          "value": 0,
+          "incrementAmmount": 1,
+          "multiplier": 1,
+          "cost": { "wood": 30, "stone": 10 },
+          "color": "brown lighten-2",
+          "requirement": null,
+          "unlocked": true
+        },
+        {
           "label": "villagers",
           "tier":"normal",
           "type": "village",
@@ -81,84 +93,80 @@
           "multiplier": 1,
           "cost": { "food": 30, "houses": 1 },
           "color": "grey",
-          "requirement": null
-        },
-        {
-          "label": "houses",
-          "tier":"normal",
-          "type": "village",
-          "value": 1,
-          "incrementAmmount": 1,
-          "multiplier": 1,
-          "cost": { "wood": 30, "stone": 10 },
-          "color": "brown lighten-2",
-          "requirement": null
+          "requirement": null,
+          "unlocked": true
         },
         {
           "label": "Farm",
           "tier":"good",
           "type": "village",
-          "value": 1,
+          "value": 0,
           "incrementAmmount": 1,
           "multiplier": 1,
           "cost": { "wood": 30, "stone": 10, "villagers": 1 },
           "color": "green lighten-2",
-          "requirement": null
+          "requirement": null,
+          "unlocked": false
         },
         {
           "label": "Sawmill",
           "tier":"good",
           "type": "village",
-          "value": 1,
+          "value": 0,
           "incrementAmmount": 1,
           "multiplier": 1,
           "cost": { "wood": 30, "stone": 10, "iron": 20, "villagers": 1 },
           "color": "brown lighten-1",
-          "requirement": null
+          "requirement": null,
+          "unlocked": false
         },
         {
           "label": "Mines",
           "tier":"good",
           "type": "village",
-          "value": 1,
+          "value": 0,
           "incrementAmmount": 1,
           "multiplier": 1,
           "cost": { "wood": 30, "stone": 10, "iron": 20, "villagers": 3 },
           "color": "grey darken-3",
-          "requirement": null
+          "requirement": null,
+          "unlocked": false
         },
         {
           "label": "Smith",
           "tier":"rare",
           "type": "village",
-          "value": 1,
+          "value": 0,
           "incrementAmmount": 1,
           "multiplier": 1,
-          "cost": { "wood": 30, "stone": 20, "iron": 50, "villagers": 2 },
+          "cost": { "wood": 30, "stone": 20, "coal": 50, "iron": 50, "villagers": 2 },
           "color": "grey darken-2",
-          "requirement": null
+          "requirement": null,
+          "unlocked": false
         },
         {
           "label": "Smeltery",
           "tier":"rare",
           "type": "village",
-          "value": 1,
+          "value": 0,
           "incrementAmmount": 1,
           "multiplier": 1,
-          "cost": { "wood": 50, "stone": 100, "iron": 200, "villagers": 4 },
+          "cost": { "wood": 50, "stone": 100, "coal": 100, "iron": 200, "villagers": 4 },
           "color": "red darken-4",
-          "requirement": null
+          "requirement": null,
+          "unlocked": false
         },
         {
           "label": "Barracks",
           "tier":"epic",
           "type": "village",
-          "value": 1,
+          "value": 0,
           "incrementAmmount": 1,
           "multiplier": 1,
-          "cost": { "wood": 500, "stone": 1000, "iron": 500, "villagers": 30 },
+          "cost": { "wood": 500, "stone": 1000, "iron": 500, "steel": 100, "villagers": 30 },
           "color": "blue darken-2",
-          "requirement": null
+          "requirement": null,
+          "unlocked": false
         },
         {
           "label": "Fort",
@@ -169,7 +177,8 @@
           "multiplier": 1,
           "cost": { "wood": 1000, "stone": 5000, "iron": 1000, "villagers": 50 },
           "color": "purple darken-3",
-          "requirement": null
+          "requirement": null,
+          "unlocked": false
         },
         {
           "label": "Castle",
@@ -180,7 +189,8 @@
           "multiplier": 1,
           "cost": { "wood": 5000, "stone": 20000, "iron": 5000, "villagers": 500 },
           "color": "purple darken-4",
-          "requirement": null
+          "requirement": null,
+          "unlocked": false
         },
         {
           "label": "Recruit",
@@ -210,7 +220,7 @@
           "label": "Soldier",
           "type": "millitary",
           "tier": "rare",
-          "value": 1,
+          "value": 0,
           "dps": 5,
           "defense": 2,
           "multiplier": 1,

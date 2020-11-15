@@ -13,7 +13,7 @@
             class="ma-2"
             style="user-select: none;"
             v-bind:color="item.crafted == true ? 'green' : item.color"
-            v-bind:style="item.crafted ? 'opacity: 1;' : !INCREMENTABLITY(item) ? 'opacity: 1;' : 'opacity: 0.5'"
+            v-bind:style="item.crafted ? 'opacity: 1;' : !INCREMENTABLITY(item.cost) ? 'opacity: 1;' : 'opacity: 0.5'"
             @click="itemClicked(item)"
           >
             <v-img v-if="item.tier == 'normal'" src="../assets/backgrounds/bg_grey.png">
