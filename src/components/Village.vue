@@ -4,7 +4,7 @@
       <v-tooltip color="black" right v-for="item in ITEMS" v-bind:key="item.label">
         <template v-slot:activator="{on, attrs}">
           <v-card v-bind="attrs" v-on="on" class="ma-2" style="user-select: none;" v-bind:color="item.color" @click="itemClicked(item)">
-            <v-card flat width="80px">
+            <v-card flat width="74px">
               <v-img v-if="item.tier == 'normal'" src="../assets/backgrounds/bg_grey.png">
                 <v-img v-bind:src="require('../assets/Village/' + item.label + '.png')">
                   <H2 style="background: rgba(0,0,0,0.4);">{{ item.value }}</H2></v-img
