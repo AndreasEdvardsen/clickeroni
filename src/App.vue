@@ -17,6 +17,23 @@
                 <div>Lodging: {{ lodging }}</div>
               </v-card-subtitle>
             </v-card>
+            <v-card dark class="mt-4">
+              <v-card-title>Quick Guide</v-card-title>
+              <v-card-subtitle>
+                <div>As the new ruler of a new humble village, your goal is to grow and protect your people</div>
+              </v-card-subtitle>
+              <v-card-subtitle>
+                <ul>
+                  <li>Gather resources by clicking on them in the top bar.</li>
+                  <li class="mt-3">Build buildings to help your expansion by clicking on icons on the left side.</li>
+                  <li class="mt-3">Build a smithy to unlock the possebility for new equipment.</li>
+                  <li class="mt-3">
+                    Defend against attackers by clicking on them in the right sidebar. but be carefull! They will try to attack back! Training
+                    soldiers in the barracks will protect you, and make your attacks stronger.
+                  </li>
+                </ul>
+              </v-card-subtitle>
+            </v-card>
           </v-col>
           <v-col>
             <equipment :ITEMS="equipmentItems" :AFFORDANCE="canAfford" :INCREMENTABLITY="canIncrement" @item-clicked="craftEquipment"></equipment>
